@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 import { type forecastResponse, weatherAPI } from 'components/Forecast'
 import WeatherIcon from 'components/WeatherIcons'
 import { useEffect, useState } from 'react'
 import { getRandomCities } from 'utils'
 
 export default function WeatherSlider() {
+  const navigate = useNavigate()
   const [selectedCitiesForcast, setSelectedCitiesForecast] = useState<
     forecastResponse[]
   >([])
@@ -32,7 +34,10 @@ export default function WeatherSlider() {
     <div className="w-full max-h-[30rem] flex flex-col gap-4 items-center overflow-y-auto max-w-full md:overflow-x-scroll md:flex-row my-4 px-2">
       {selectedCitiesForcast.map((cityForecast) => {
         return (
-          <div className="flex flex-col items-center py-2 rounded-md border-[1px] border-white bg-slate-800 min-w-[15rem] min-h-[16rem] my-2 font-inter hover:transform hover:scale-105 transition-transform duration-300 ease-in-out">
+          <div
+            onClick={() => navigate('/forecast/' + cityForecast.location.name)}
+            className="flex flex-col items-center py-2 rounded-md border-[1px] border-white bg-slate-800 min-w-[15rem] min-h-[16rem] my-2 font-inter hover:transform hover:scale-105 transition-transform duration-300 ease-in-out"
+          >
             <h2 className="text-2xl font-medium">
               {cityForecast.location.name}
             </h2>

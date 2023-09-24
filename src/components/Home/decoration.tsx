@@ -29,14 +29,6 @@ const ellipsePlaces: ellipsePosition[] = [
 export default function HomePageDecoration() {
   return (
     <>
-      <a
-        className="github-fork-ribbon"
-        href="https://github.com/Carbowix/weatherly"
-        data-ribbon="Fork me on GitHub"
-        title="Fork me on GitHub"
-      >
-        Fork me on GitHub
-      </a>
       {ellipsePlaces.map((ellipse) => (
         <img
           key={ellipse.id}

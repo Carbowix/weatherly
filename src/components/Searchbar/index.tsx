@@ -101,7 +101,7 @@ export default function SearchBar() {
   }
 
   return (
-    <form className="relative w-11/12 md:w-2/5 h-full mx-auto">
+    <form className="relative w-11/12 md:w-2/5  h-12 md:h-full mx-auto">
       <div className="relative h-full">
         <input
           className="rounded-full bg-slate-700 w-full h-full px-4"
