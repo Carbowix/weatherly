@@ -43,8 +43,8 @@ const weatherData: { [key: number]: { day: String; night: string } } = {
     night: 'thunderstorms-night'
   },
   1114: {
-    day: 'snow',
-    night: 'snow'
+    day: 'wind-snow',
+    night: 'wind-snow'
   },
   1117: {
     day: 'snow',
@@ -163,8 +163,8 @@ const weatherData: { [key: number]: { day: String; night: string } } = {
     night: 'partly-cloudy-night-snow'
   },
   1258: {
-    day: 'snow',
-    night: 'snow'
+    day: 'extreme-snow',
+    night: 'extreme-snow'
   },
   1261: {
     day: 'partly-cloudy-day-hail',

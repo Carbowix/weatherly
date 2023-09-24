@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import ReactCountryFlag from 'react-country-flag'
 import { ChangeEvent, useState } from 'react'
@@ -27,9 +28,13 @@ citiesData.forEach((city) => {
 })
 
 function SearchEntry({ name, flag }: searchResultEntry) {
+  const navigate = useNavigate()
   return (
     <div className="border-b-[1px] border-b-slate-700 py-1 w-[99%]">
-      <div className="flex gap-2 items-center hover:bg-slate-700 duration-500 cursor-pointer">
+      <div
+        onClick={() => navigate('/forecast/' + name)}
+        className="flex gap-2 items-center hover:bg-slate-700 duration-500 cursor-pointer"
+      >
         {flag}
         <div>{name}</div>
       </div>

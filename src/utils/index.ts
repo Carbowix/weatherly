@@ -1,22 +1,39 @@
-interface TimeInfo {
-  time: string;
-  isNight: boolean;
+import citiesData from 'components/Searchbar/data/cities'
+
+// Check if city exists before doing some special calls..
+function doesCityExist(cityName: string): boolean {
+  return citiesData.some(
+    (cityInfo) => cityInfo.city.toLowerCase() === cityName.toLowerCase()
+  )
 }
+// Get random cities for homepage weather cards
+function getRandomCities(numCities: number): string[] {
+  const cities = [
+    'New York',
+    'London',
+    'Paris',
+    'Tokyo',
+    'Sydney',
+    'Rio de Janeiro',
+    'Moscow',
+    'Cape Town'
+  ]
 
-// Returns time based on epochTimestamp given by weatherAPI
-function convertEpochToTime(epochTimestamp: number): TimeInfo {
-  const date = new Date(epochTimestamp * 1000);
+  const selectedCities: string[] = []
 
-  const hour = date.getHours();
+  // Ensure numCities doesn't exceed the total number of cities
+  numCities = Math.min(numCities, cities.length)
 
-  let isNight = false;
-  if (hour >= 18 || hour < 6) {
-    isNight = true;
+  while (selectedCities.length < numCities) {
+    const randomIndex = Math.floor(Math.random() * cities.length)
+    const randomCity = cities[randomIndex]
+
+    if (!selectedCities.includes(randomCity)) {
+      selectedCities.push(randomCity)
+    }
   }
 
-  // Step 4: Return the Result
-  return {
-    time: `${hour.toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`,
-    isNight: isNight,
-  };
+  return selectedCities
 }
+
+export { doesCityExist, getRandomCities }
