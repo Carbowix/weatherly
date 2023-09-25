@@ -10,32 +10,53 @@ export default function WeatherSlider() {
     forecastResponse[]
   >([])
   useEffect(() => {
-    const randomCities = getRandomCities(4)
-    randomCities.forEach((city) => {
-      const apiQuery = new URLSearchParams({
-        key: import.meta.env.VITE_WEATHERAPI_KEY,
-        q: city.toLowerCase(),
-        days: '1',
-        aqi: 'no',
-        alerts: 'no'
-      })
-      fetch(weatherAPI + '?' + apiQuery)
-        .then((response) => {
-          if (response.ok) {
-            return response.json()
+    ;(async () => {
+      const randomCities = getRandomCities(4)
+      const selectedCitiesData = []
+
+      for (const city of randomCities) {
+        const apiQuery = new URLSearchParams({
+          key: import.meta.env.VITE_WEATHERAPI_KEY,
+          q: city.toLowerCase(),
+          days: '1',
+          aqi: ' no',
+          alerts: 'no'
+        })
+
+        try {
+          const response = await fetch(weatherAPI + '?' + apiQuery)
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok.')
           }
-        })
-        .then((data: forecastResponse) => {
-          setSelectedCitiesForecast((prevItems) => [...prevItems, data])
-        })
-    })
+
+          const data = await response.json()
+          selectedCitiesData.push(data)
+        } catch (error) {
+          // Handle errors here
+          console.error(error)
+        }
+      }
+
+      setSelectedCitiesForecast(selectedCitiesData)
+    })()
   }, [])
   return (
-    <div className="w-full max-h-[30rem] flex flex-col gap-4 items-center overflow-y-auto max-w-full md:overflow-x-scroll md:flex-row my-4 px-2">
+    <div className="w-full max-h-[35rem] flex flex-col gap-4 items-center overflow-y-auto max-w-full md:flex-wrap md:flex-row my-4 px-2">
       {selectedCitiesForcast.map((cityForecast) => {
         return (
           <div
-            onClick={() => navigate('/forecast/' + cityForecast.location.name)}
+            key={cityForecast.location.name + '_WC'}
+            onClick={() =>
+              navigate(
+                '/forecast/' +
+                  cityForecast.location.name +
+                  ':' +
+                  cityForecast.location.lat +
+                  ',' +
+                  cityForecast.location.lon
+              )
+            }
             className="flex flex-col items-center py-2 rounded-md border-[1px] border-white bg-slate-800 min-w-[15rem] min-h-[16rem] my-2 font-inter hover:transform hover:scale-105 transition-transform duration-300 ease-in-out"
           >
             <h2 className="text-2xl font-medium">

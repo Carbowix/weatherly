@@ -4,6 +4,7 @@ import { doesCityExist } from 'utils'
 import { BiArrowBack } from 'react-icons/bi'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import WeatherIcon from 'components/WeatherIcons'
+import LoadingSpinner from 'components/LoadingSpinner'
 
 export interface forecastResponseDay {
   date: string // FORMAT: "YYYY-MM-DD"
@@ -36,6 +37,8 @@ export interface forecastResponse {
     country: string
     localtime: string // FORMAT: "YYYY-MM-DD HH:MM"
     name: string
+    lat: number
+    lon: number
   }
 
   forecast: {
@@ -56,7 +59,6 @@ function WeatherTabForecastSlot({
   temperature: string
   active: boolean
 }): React.ReactElement {
-  console.log(active)
   return (
     <>
       <div
@@ -109,14 +111,18 @@ export default function Forecast() {
     useState<forecastResponse | null>(null)
   const { city } = useParams()
   const navigate = useNavigate()
-
   useEffect(() => {
-    if (city && !doesCityExist(city)) {
-      navigate('/')
-    } else if (city) {
+    if (
+      city &&
+      city.match(/^[^\n\r]*[\w\s:]+:\s*-?\d+(\.\d+)?,-?\d+(\.\d+)?[^\n\r]*$/gm)
+    ) {
+      // cityname:lat,lng
+      const splittedParams = city.split(':') // Index 0: CityName, Index 1: coords
+      if (!doesCityExist(splittedParams[0], splittedParams[1]))
+        return navigate('/')
       const apiQuery = new URLSearchParams({
         key: import.meta.env.VITE_WEATHERAPI_KEY,
-        q: city.toLowerCase(),
+        q: splittedParams[1], // Search by Coords
         days: '3',
         aqi: 'no',
         alerts: 'no'
@@ -128,13 +134,19 @@ export default function Forecast() {
           }
         })
         .then((data: forecastResponse) => {
-          console.log(data)
           setCityWeatherData(data)
         })
+    } else {
+      navigate('/')
     }
   }, [])
 
-  if (!cityWeatherData) return <>Loading...</>
+  if (!cityWeatherData)
+    return (
+      <div className="flex justify-center items-center w-screen h-screen">
+        <LoadingSpinner />
+      </div>
+    )
 
   return (
     <div className="relative lg:w-1/2 w-full h-screen flex flex-col items-center px-2 font-inter">
@@ -219,6 +231,7 @@ export default function Forecast() {
                   (forecastDay, index) => {
                     return (
                       <WeatherTabForecastSlot
+                        key={'WTAB_' + index}
                         active={index == 0}
                         forecastDate={forecastDay.date}
                         weatherIconCode={forecastDay.day.condition.code}

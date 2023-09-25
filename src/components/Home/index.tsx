@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <HomePageDecoration />
-      <div className="relative lg:w-3/4 md:w-full h-screen flex flex-col gap-4 items-center ">
+      <div className="relative lg:w-4/5 md:w-full h-screen flex flex-col gap-4 items-center ">
         <div className="w-full h-32 flex justify-center items-center  gap-4">
           <div>
             <img className="w-24 h-24" src="/src/public/favicon.svg" />
@@ -24,7 +24,7 @@ export default function Home() {
         <div className="w-full h-12">
           <SearchBar />
         </div>
-        <div className="w-full md:w-2/3 h-2/3">
+        <div className="w-full md:w-[70%] h-2/3">
           <div className="w-full px-2">
             <h2 className="text-2xl lg:text-4xl py-2">Popular Cities</h2>
             <hr className="style-six" />

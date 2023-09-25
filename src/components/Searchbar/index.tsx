@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import ReactCountryFlag from 'react-country-flag'
 import { ChangeEvent, useState } from 'react'
-import citiesData, { cityEntry } from './data/cities'
+import citiesData, { type cityEntry } from './data/cities'
 
 const MAX_SUGGESTIONS = 20 // Maximum number of suggestions to display in search
 const countryFlags: { [key: string]: React.ReactElement } = {}
@@ -27,12 +27,12 @@ citiesData.forEach((city) => {
   citiesByCountry[city.country].push(city)
 })
 
-function SearchEntry({ name, flag }: searchResultEntry) {
+function SearchEntry({ name, flag, coords }: searchResultEntry) {
   const navigate = useNavigate()
   return (
     <div className="border-b-[1px] border-b-slate-700 py-1 w-[99%]">
       <div
-        onClick={() => navigate('/forecast/' + name)}
+        onClick={() => navigate('/forecast/' + name + ':' + coords)}
         className="flex gap-2 items-center hover:bg-slate-700 duration-500 cursor-pointer"
       >
         {flag}
@@ -46,6 +46,7 @@ interface searchResultEntry {
   id?: string
   name: string
   flag: React.ReactElement
+  coords?: string
 }
 
 export default function SearchBar() {
@@ -76,7 +77,8 @@ export default function SearchBar() {
     combinedMatches = cityMatches.slice(0, MAX_SUGGESTIONS).map((city) => ({
       id: city.city + `_${++id}`,
       name: city.city,
-      flag: countryFlags[city.country]
+      flag: countryFlags[city.country],
+      coords: city.coords
     }))
 
     // If city matches don't exceed the limit, add cities from matching countries
@@ -88,7 +90,8 @@ export default function SearchBar() {
             combinedMatches.push({
               id: city.city + `_${++id}`,
               name: city.city,
-              flag: countryFlags[city.country]
+              flag: countryFlags[city.country],
+              coords: city.coords
             })
           } else {
             break // Stop adding when the limit is reached
@@ -112,9 +115,9 @@ export default function SearchBar() {
             handleSearch(e.target.value)
           }
         />
-        <button className="rounded-full absolute right-1 top-1/2 -translate-y-1/2 p-3 bg-slate-800">
+        <div className="rounded-full absolute right-1 top-1/2 -translate-y-1/2 p-3 bg-slate-800">
           <AiOutlineSearch />
-        </button>
+        </div>
       </div>
       {searchQuery !== '' && searchResults.length === 0 && (
         <div className="absolute top-14 p-4 bg-slate-800 w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2">
@@ -128,7 +131,7 @@ export default function SearchBar() {
           <div className="max-h-[10.5rem] lg:max-h-[21rem] overflow-y-auto">
             {/* Set a fixed max height and enable vertical scrolling */}
             {searchResults.map((city) => (
-              <SearchEntry key={city.name} {...city} />
+              <SearchEntry key={city.id} {...city} />
             ))}
           </div>
         </div>
