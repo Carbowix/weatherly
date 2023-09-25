@@ -3,13 +3,16 @@ import { type forecastResponse, weatherAPI } from 'components/Forecast'
 import WeatherIcon from 'components/WeatherIcons'
 import { useEffect, useState } from 'react'
 import { getRandomCities } from 'utils'
-
+import thermometerImg from 'assets/icons/thermometer-celsius.svg'
+import windImg from 'assets/icons/wind.svg'
+import humidityImg from 'assets/icons/humidity.svg'
 function WeatherCard({
   cityForecast
 }: {
   cityForecast: forecastResponse
 }): React.ReactElement {
   const navigate = useNavigate()
+
   return (
     <>
       <div
@@ -34,29 +37,20 @@ function WeatherCard({
         <h4 className="text-1xl">{cityForecast.current.condition.text}</h4>
         <div className="flex flex-col items-center w-full ">
           <div className="flex w-full justify-center items-center">
-            <img
-              className="w-12 h-12"
-              src="/src/components/WeatherIcons/icons/thermometer-celsius.svg"
-            />
+            <img className="w-12 h-12" src={thermometerImg} />
             <h2 className="text-2xl font-medium">
               {Math.round(cityForecast.current.temp_c)}°
             </h2>
           </div>
           <div className="flex w-full justify-center">
             <div className="flex items-center justify-center ">
-              <img
-                className="w-8 h-8"
-                src="/src/components/WeatherIcons/icons/wind.svg"
-              />
+              <img className="w-8 h-8" src={windImg} />
               <h2 className="text-1xl font-light">
                 {cityForecast.current.wind_mph} mph
               </h2>
             </div>
             <div className="flex items-center">
-              <img
-                className="w-8 h-8"
-                src="/src/components/WeatherIcons/icons/precipitation.svg"
-              />
+              <img className="w-8 h-8" src={humidityImg} />
               <h2 className="text-1xl font-light">
                 {Math.round(cityForecast.current.humidity)}%
               </h2>

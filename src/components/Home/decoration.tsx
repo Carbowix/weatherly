@@ -1,3 +1,5 @@
+import ellipseImg from 'assets/images/Ellipse.png'
+import waveImg from 'assets/images/wave3.png'
 interface ellipsePosition {
   id: string
   left: string
@@ -32,14 +34,14 @@ export default function HomePageDecoration() {
       {ellipsePlaces.map((ellipse) => (
         <img
           key={ellipse.id}
-          src="/src/public/Ellipse.png"
+          src={ellipseImg}
           className="absolute w-8 z-10 animate-ping hidden md:block"
           style={{ left: `${ellipse.left}%`, top: `${ellipse.top}%` }}
         />
       ))}
 
       <img
-        src="/src/public/wave3.png"
+        src={waveImg}
         className="absolute w-96 bottom-4 right-4 animate-spin hidden md:block"
       />
     </>

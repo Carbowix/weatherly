@@ -46,7 +46,7 @@ export interface forecastResponse {
   }
 }
 
-export const weatherAPI = 'http://api.weatherapi.com/v1/forecast.json'
+export const weatherAPI = 'https://api.weatherapi.com/v1/forecast.json'
 
 function WeatherTabForecastSlot({
   weatherIconCode,
@@ -95,7 +95,9 @@ function WeatherTabRow({
       <div className="flex items-center">
         <img
           className="w-8 h-8"
-          src={`/src/components/WeatherIcons/icons/${iconName}.svg`}
+          src={
+            new URL(`../../assets/icons/${iconName}.svg`, import.meta.url).href
+          }
         />
         <p className="text-lg md:text-xl">{header}</p>
       </div>

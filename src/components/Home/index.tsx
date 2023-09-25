@@ -1,6 +1,7 @@
 import SearchBar from 'components/Searchbar'
 import HomePageDecoration from './decoration'
 import WeatherSlider from 'components/WeatherSlider'
+import weatherlyIcon from 'public/favicon.svg'
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
       <div className="relative lg:w-4/5 md:w-full h-screen flex flex-col gap-4 items-center ">
         <div className="w-full h-32 flex justify-center items-center  gap-4">
           <div>
-            <img className="w-24 h-24" src="/src/public/favicon.svg" />
+            <img className="w-24 h-24" src={weatherlyIcon} />
           </div>
           <div className="w-auto font-inter text-gray-50">
             <h2 className="text-5xl md:text-6xl">Weatherly</h2>
