@@ -1,13 +1,13 @@
-<div style="display: flex; align-items: center; justify-content: center;">
-  <img src='./src/public/favicon.svg' width="100px" height="100px">
-  <h1 align="center">Weatherly</h1>
+<div align="center">
+  <img src='./src/public/favicon.svg' width="100px" height="100px" />
+  <h1>Weatherly</h1>
 </div>
 
 <h3 align="center">A Nice and basic weather website made purely with React and Typescript</h3>
 
-<div style="text-align: center;">
+<div align="center">
   <p>
-    <a href="https://github.com/Carbowix/weatherly/blob/master/LICENSE">
+    <a href="https://github.com/Carbowix/weatherly/blob/main/LICENSE">
       <img src="https://img.shields.io/github/license/carbowix/weatherly?style=for-the-badge" alt="license mit"/>
     </a>
     <a href="https://github.com/Carbowix/weatherly">
@@ -18,8 +18,15 @@
       <img src="https://img.shields.io/discord/633795546724827157?color=5865F2&logo=discord&logoColor=white" alt="Discord server" />
     </a>
   </p>
+  <br>
+    <a href="https://weatherly-gray.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/Carbowix/weatherly/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Carbowix/weatherly/issues">Request Feature</a>
+   
 </div>
-
+ <br>
 <details>
 <summary style="font-size: 21px;">Table of Contents</summary>
 <ol>
