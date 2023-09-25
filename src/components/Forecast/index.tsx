@@ -63,19 +63,19 @@ function WeatherTabForecastSlot({
     <>
       <div
         className={
-          'px-2 rounded-lg border flex flex-col items-center ' +
+          'px-1 md:px-2 rounded-lg border flex flex-col items-center ' +
           (active
-            ? 'bg-slate-400 text-black border-slate-400'
+            ? ' bg-slate-300 text-black border-slate-400'
             : 'bg-slate-800 border-white')
         }
       >
         <WeatherIcon weatherIconCode={weatherIconCode} isDay={true} />
-        <h2 className="text-xl">
+        <h2 className="text-lg md:text-xl">
           {new Date(forecastDate.split(' ')[0]).toLocaleDateString('en-US', {
-            weekday: 'long'
+            weekday: 'short'
           })}
         </h2>
-        <h2 className="text-xl">{temperature} °C</h2>
+        <h2 className="text-lg md:text-xl font-semibold">{temperature} °C</h2>
       </div>
     </>
   )
@@ -97,9 +97,9 @@ function WeatherTabRow({
           className="w-8 h-8"
           src={`/src/components/WeatherIcons/icons/${iconName}.svg`}
         />
-        <p className="text-xl">{header}</p>
+        <p className="text-lg md:text-xl">{header}</p>
       </div>
-      <div className="text-xl">
+      <div className="text-lg md:text-xl">
         <p>{value}</p>
       </div>
     </div>
@@ -166,9 +166,9 @@ export default function Forecast() {
       <hr className={'style-six w-full'} />
 
       <div className="w-full md:h-3/4 lg:h-1/2 h-2/4 my-4">
-        <div className="flex w-full md:h-4/5 h-3/4 items-center">
-          <div className="w-2/3 h-full bg-blue-400 rounded-lg p-4">
-            <div className="w-full h-[30%]  flex flex-col gap-1">
+        <div className="flex flex-col md:flex-row w-full md:h-4/5 h-3/4 items-center">
+          <div className="w-full md:w-2/3 md:h-full bg-blue-400 rounded-lg p-4">
+            <div className="w-full h-[30%] flex flex-col gap-1">
               <h2 className="text-3xl font-semibold">
                 {new Date(
                   cityWeatherData.location.localtime.split(' ')[0]
@@ -201,7 +201,7 @@ export default function Forecast() {
               </h4>
             </div>
           </div>
-          <div className="h-[90%] w-full bg-slate-800 rounded-r-lg">
+          <div className="w-[95%] md:h-[90%] md:w-full bg-slate-800 rounded-r-lg">
             <div className="flex flex-col gap-2 w-full h-full p-4 items-center">
               <WeatherTabRow
                 iconName="humidity"

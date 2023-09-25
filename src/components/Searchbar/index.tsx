@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import ReactCountryFlag from 'react-country-flag'
-import { ChangeEvent, useState } from 'react'
+import { type ChangeEvent, useState } from 'react'
 import citiesData, { type cityEntry } from './data/cities'
 
 const MAX_SUGGESTIONS = 20 // Maximum number of suggestions to display in search

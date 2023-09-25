@@ -41,6 +41,7 @@ function getRandomCities(numCities: number): string[] {
   return selectedCities
 }
 
+// Check if 2 coords lat:long are the same, since sometimes coords from the weatherAPI is compared against our local weatherData...
 function areCoordinatesApproximatelyEqual(
   coord1: string,
   coord2: string
