@@ -1,11 +1,7 @@
 <div align="center">
   <img src='./src/public/favicon.svg' width="100px" height="100px" />
   <h1>Weatherly</h1>
-</div>
-
-<h3 align="center">A Nice and basic weather website made purely with React and Typescript</h3>
-
-<div align="center">
+  <h3>A Nice and basic weather website made purely with React and Typescript</h3>
   <p>
     <a href="https://github.com/Carbowix/weatherly/blob/main/LICENSE">
       <img src="https://img.shields.io/github/license/carbowix/weatherly?style=for-the-badge" alt="license mit"/>
@@ -18,15 +14,17 @@
       <img src="https://img.shields.io/discord/633795546724827157?color=5865F2&logo=discord&logoColor=white" alt="Discord server" />
     </a>
   </p>
-  <br>
+  <p style="margin: 20px;">
     <a href="https://weatherly-gray.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/Carbowix/weatherly/issues">Report Bug</a>
     ·
     <a href="https://github.com/Carbowix/weatherly/issues">Request Feature</a>
-   
+  </p>
+
+  <img style="margin: 20px;" src='./misc/w_home.png' width="1000" height="600" />
 </div>
- <br>
+
 <details>
 <summary style="font-size: 21px;">Table of Contents</summary>
 <ol>
@@ -37,7 +35,7 @@
         <li><a href="#installation">Installation</a></li>
     </ul>
     <li><a href="#technologies">Technologies</a></li>
-    <li><a href="#wishlist">Wishlist</a></li>
+    <li><a href="#showcase">Showcase</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
 </details>
 <br>
@@ -92,6 +90,14 @@ This project is heavily based on the [reactjs-vite-tailwindcss-boilerplate](http
 - [ESLint](https://eslint.org/) configured with some initial rules
 - [Prettier](https://prettier.io/) to enforce consistent code style
 - [Vite](https://vitejs.dev/) to build the project for development or production
+
+# Showcase
+
+<div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 20px;">
+  <img src='./misc/w_search.png' width="900" height="600" />
+  <img src='./misc/w_city.png' width="900" height="600" />
+</div>
+
 
 # Acknowledgements
 
